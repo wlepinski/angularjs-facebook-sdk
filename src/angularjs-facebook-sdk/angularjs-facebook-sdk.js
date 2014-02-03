@@ -11,9 +11,8 @@ angular.module('angularjs-facebook-sdk.config', [])
 // Modules
 angular.module('angularjs-facebook-sdk.directives', []);
 angular.module('angularjs-facebook-sdk.services', []);
-angular.module('angularjs-facebook-sdk',
-    [
-        'angularjs-facebook-sdk.config',
-        'angularjs-facebook-sdk.directives',
-        'angularjs-facebook-sdk.services'
-    ]);
+angular.module('angularjs-facebook-sdk', [
+    'angularjs-facebook-sdk.config',
+    'angularjs-facebook-sdk.directives',
+    'angularjs-facebook-sdk.services'
+]);
