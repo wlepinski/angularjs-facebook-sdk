@@ -21,7 +21,7 @@ angular.module('angularjs-facebook-sdk.services')
      */
     this.setLanguage = function setLanguage (langCode) {
       _langCode = langCode;
-    }
+    };
 
     /**
      * Enable/Disable the debug for Facebook SDK.
@@ -30,7 +30,7 @@ angular.module('angularjs-facebook-sdk.services')
      */
     this.setDebug = function setDebug (enableDebug) {
       _debug = enableDebug;
-    }
+    };
 
     /**
      * [FacebookProviderFactoryFn description]
@@ -46,7 +46,7 @@ angular.module('angularjs-facebook-sdk.services')
           status     : true,
           xfbml      : true
         });
-      }
+      };
 
       // The public API
       return {
