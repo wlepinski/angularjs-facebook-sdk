@@ -31,7 +31,10 @@ module.exports = function (grunt) {
         },
         jshint: {
             beforeConcat: {
-                src: ['gruntfile.js', '<%= library.name %>/**/*.js']
+                src: [
+                    'gruntfile.js',
+                    'src/<%= library.name %>/**/*.js',
+                ]
             },
             afterConcat: {
                 src: [
@@ -59,6 +62,32 @@ module.exports = function (grunt) {
                 'src/**/*'
             ],
             tasks: ['default']
+        },
+        connect: {
+            example: {
+                options: {
+                    port: 9001,
+                    base: ['example', 'dist', 'bower_components'],
+                    keepalive: true,
+                    middleware: function (connect, options) {
+                        var middlewares = [];
+
+                        if (!Array.isArray(options.base)) {
+                            options.base = [options.base];
+                        }
+
+                        var directory = options.directory || options.base[options.base.length - 1];
+
+                        options.base.forEach(function (base) {
+                            middlewares.push(connect.static(base));
+                        });
+
+                        // Make directory browse-able.
+                        middlewares.push(connect.directory(directory));
+                        return middlewares;
+                    },
+                }
+            }
         }
     });
 
@@ -66,8 +95,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
     grunt.registerTask('default', ['jshint:beforeConcat', 'concat', 'jshint:afterConcat', 'uglify']);
-    grunt.registerTask('livereload', ['default', 'watch']);
+    grunt.registerTask('livereload', ['watch']);
+    grunt.registerTask('serve:examples', ['default', 'connect:example']);
 
 };

@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:fb="http://ogp.me/ns/fb#" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>Angularjs-facebook-sdk example</title>
+</head>
+<body>
+  <afb:login label="Login"></afb:login>
+  <afb:logout label="Logout"></afb:logout>
+
+  <p>
+    <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="button_count" action="like" show-faces="true" share="false"></afb:like>
+    <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="box_count" action="like" show-faces="false" share="true"></afb:like>
+    <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="box_count" action="like" show-faces="false" share="false"></afb:like>
+  </p>
+
+  <p>
+    <afb:share:button href="https://github.com/wlepinski/angularjs-facebook-sdk" type="button_count"></afb:share:button>
+  </p>
+
+  <p>
+    <afb:post href="https://www.facebook.com/FacebookDevelopers/posts/10151856791168553" width="500"></afb:post>
+  </p>
+
+  <p>
+    <afb:follow href="http://www.facebook.com/zuck" colorscheme="light" layout="standard" show-faces="true"></afb:follow>
+  </p>
+
+  <p>
+    <afb:comments href="https://github.com/wlepinski/angularjs-facebook-sdk" numposts="5" colorscheme="light"></afb:comments>
+  </p>
+
+  <p>
+    <afb:like:box href="http://www.facebook.com/github" colorscheme="light" show-faces="true" header="true" stream="false" show-border="true"></afb:like:box>
+  </p>
+
+  <p>
+    <afb:facepile href="http://facebook.com/FacebookDevelopers" colorscheme="light" size="small" show-count="true"></afb:facepile>
+  </p>
+
+  <p>
+      <afb:activity app-id="177530099095061" site="kinetoscope.herokuapp.com" action="likes, recommends" colorscheme="light" header="true"></afb:activity>
+  </p>
+
+  <script src="angular/angular.js"></script>
+  <script src="angularjs-facebook-sdk.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

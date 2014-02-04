@@ -1,5 +1,5 @@
 angular.module('angularjs-facebook-sdk.services')
-  .provider('facebook', function () {
+  .provider('facebookConfig', function () {
     var _appId = null;
     var _langCode = 'en_US';
     var _debug = false;
@@ -35,16 +35,18 @@ angular.module('angularjs-facebook-sdk.services')
     /**
      * [FacebookProviderFactoryFn description]
      */
-    function FacebookProviderFactoryFn ($window, $q) {
+    function FacebookProviderFactoryFn ($rootScope, $window, $q) {
       var initDefer = $q.defer();
 
       $window.fbAsyncInit = function fbAsyncInit () {
-        initDefer.resolve();
-
         FB.init({
           appId      : _appId,
           status     : true,
           xfbml      : true
+        });
+
+        $rootScope.$apply(function(){
+            initDefer.resolve();
         });
       };
 
@@ -53,6 +55,9 @@ angular.module('angularjs-facebook-sdk.services')
         appId: _appId,
         lang: _langCode,
         debug: _debug,
+
+        // The initialization promise
+        initialization: initDefer.promise,
 
         /**
          * Initialize the Facebook SDK for Javsacript.
@@ -74,7 +79,7 @@ angular.module('angularjs-facebook-sdk.services')
       };
     }
 
-    FacebookProviderFactoryFn.$inject = ['$window', '$q'];
+    FacebookProviderFactoryFn.$inject = ['$rootScope', '$window', '$q'];
 
     this.$get = FacebookProviderFactoryFn;
   });

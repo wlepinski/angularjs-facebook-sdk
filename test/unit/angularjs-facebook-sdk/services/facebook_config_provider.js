@@ -1,12 +1,12 @@
-describe('FacebookProvider', function () {
+describe('FacebookConfigProvider', function () {
 
-    var _facebookProvider;
+    var _facebookConfigProvider;
 
     beforeEach(function () {
       // Initialize the service provider by injecting it to a fake module's config block
       angular.module('testApp', function () {})
-        .config(function (facebookProvider) {
-          _facebookProvider = facebookProvider;
+        .config(function (facebookConfigProvider) {
+          _facebookConfigProvider = facebookConfigProvider;
         });
 
       // Initialize myApp injector
@@ -19,15 +19,15 @@ describe('FacebookProvider', function () {
     describe('with custom configuration', function () {
       it('tests the providers internal function', inject(function ($injector) {
         // check sanity
-        expect(_facebookProvider).not.toBeUndefined();
+        expect(_facebookConfigProvider).not.toBeUndefined();
 
         // configure the provider
-        _facebookProvider.setAppId('12345');
-        _facebookProvider.setDebug(true);
-        _facebookProvider.setLanguage('pt_BR');
+        _facebookConfigProvider.setAppId('12345');
+        _facebookConfigProvider.setDebug(true);
+        _facebookConfigProvider.setLanguage('pt_BR');
 
         // Invoke the provider factory function
-        var instance = $injector.invoke(_facebookProvider.$get);
+        var instance = $injector.invoke(_facebookConfigProvider.$get);
 
         // test an instance of the provider for
         // the custom configuration changes
@@ -37,11 +37,11 @@ describe('FacebookProvider', function () {
       }));
 
       it('should initialize the SDK', inject(function ($injector) {
-        _facebookProvider.setAppId(1111);
-        _facebookProvider.setLanguage('pt_BR');
+        _facebookConfigProvider.setAppId(1111);
+        _facebookConfigProvider.setLanguage('pt_BR');
 
         // Invoke the provider factory function
-        var instance = $injector.invoke(_facebookProvider.$get);
+        var instance = $injector.invoke(_facebookConfigProvider.$get);
 
         runs(function() {
           var promise = instance.init();

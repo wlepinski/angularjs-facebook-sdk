@@ -14,8 +14,6 @@ describe('angularjs-facebook-sdk', function() {
     };
 
     beforeEach(function() {
-
-        // Get module
         module = angular.module('angularjs-facebook-sdk');
         dependencies = module.requires;
     });
@@ -24,18 +22,11 @@ describe('angularjs-facebook-sdk', function() {
         expect(hasModule('angularjs-facebook-sdk.config')).toBeTruthy();
     });
 
-    
-
-    
     it('should load directives module', function() {
         expect(hasModule('angularjs-facebook-sdk.directives')).toBeTruthy();
     });
-    
 
-    
     it('should load services module', function() {
         expect(hasModule('angularjs-facebook-sdk.services')).toBeTruthy();
     });
-    
-
 });
