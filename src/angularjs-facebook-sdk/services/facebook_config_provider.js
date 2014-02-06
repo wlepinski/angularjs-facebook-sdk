@@ -3,6 +3,7 @@ angular.module('angularjs-facebook-sdk.services')
     var _appId = null;
     var _langCode = 'en_US';
     var _debug = false;
+    var _autoInit = true;
 
     /**
      * Set the Facebook SDK application ID.
@@ -32,6 +33,10 @@ angular.module('angularjs-facebook-sdk.services')
       _debug = enableDebug;
     };
 
+    this.autoInit = function autoInit (enableAutoInit) {
+        _autoInit = enableAutoInit;
+    };
+
     /**
      * [FacebookProviderFactoryFn description]
      */
@@ -55,6 +60,7 @@ angular.module('angularjs-facebook-sdk.services')
         appId: _appId,
         lang: _langCode,
         debug: _debug,
+        autoInit: _autoInit,
 
         // The initialization promise
         initialization: initDefer.promise,

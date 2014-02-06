@@ -16,3 +16,9 @@ angular.module('angularjs-facebook-sdk', [
     'angularjs-facebook-sdk.directives',
     'angularjs-facebook-sdk.services'
 ]);
+
+angular.module('angularjs-facebook-sdk').run(['facebookConfig', function (facebookConfig){
+    if (facebookConfig.autoInit) {
+        facebookConfig.init();
+    }
+}]);

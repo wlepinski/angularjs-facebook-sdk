@@ -5,8 +5,11 @@
   <title>Angularjs-facebook-sdk example</title>
 </head>
 <body>
-  <afb:login label="Login"></afb:login>
-  <afb:logout label="Logout"></afb:logout>
+    <afb:name uid="577763696"></afb:name>
+    <afb:profile:pic type="square" width="25" height="25" uid="577763696"></afb:profile:pic>
+
+    <afb:login label="Login" scope="email, read_stream, read_friendlists, user_actions.video"></afb:login>
+    <afb:logout label="Logout"></afb:logout>
 
   <p>
     <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="button_count" action="like" show-faces="true" share="false"></afb:like>
