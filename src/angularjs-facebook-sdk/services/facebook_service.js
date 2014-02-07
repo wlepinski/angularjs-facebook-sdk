@@ -160,7 +160,6 @@ function FacebookService(facebookConfig, $q, $rootScope) {
 
             this.ready.then(function () {
                 FB.logout(function () {
-                    eventEmitter.$broadcast('logout');
                     defer.resolve.apply(this, arguments);
                 });
             });
@@ -192,7 +191,17 @@ function FacebookService(facebookConfig, $q, $rootScope) {
          *
          * @return {Promise}
          */
-        getLoginStatus: function () {}
+        getLoginStatus: function () {
+            var defer = $q.defer();
+
+            this.ready.then(function () {
+                FB.getLoginStatus(function () {
+                    defer.resolve.apply(this, arguments);
+                });
+            });
+
+            return defer.promise;
+        }
     };
 }
 

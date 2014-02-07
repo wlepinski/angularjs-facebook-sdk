@@ -3,10 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>Angularjs-facebook-sdk example</title>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script type="text/javascript">
+  hljs.configure({tabReplace: '    '}); // 4 spaces
+  hljs.initHighlightingOnLoad();
+</script>
 </head>
 <body>
-    <afb:name uid="577763696"></afb:name>
-    <afb:profile:pic type="square" width="25" height="25" uid="577763696"></afb:profile:pic>
+
+    <section>
+        <header>
+            <h2>afg:name</h2>
+        </header>
+        <div class="box">
+            <div class="result">
+                <h4>Result</h4>
+                <afb:name uid="577763696"></afb:name>
+            </div>
+
+            <div class="usage">
+                <h4>Usage</h4>
+                <pre>
+                    <code>
+                        &lt;afb:name uid="577763696"&gt;&lt;/afb:name&gt;
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <header>
+            <h2>afb:profile:pic</h2>
+        </header>
+        <div class="box">
+            <div class="result">
+                <h4>Result</h4>
+                <afb:profile:pic type="square" width="25" height="25" uid="577763696"></afb:profile:pic>
+            </div>
+
+            <div class="usage">
+                <h4>Usage</h4>
+                <pre>
+                    <code>
+                        &lt;afb:profile:pic type=&quot;square&quot; width=&quot;25&quot; height=&quot;25&quot; uid=&quot;577763696&quot;&gt;&lt;/afb:profile:pic&gt;
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+
 
     <afb:login label="Login" scope="email, read_stream, read_friendlists, user_actions.video"></afb:login>
     <afb:logout label="Logout"></afb:logout>

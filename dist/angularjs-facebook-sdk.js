@@ -19,155 +19,157 @@ angular.module('angularjs-facebook-sdk', [
     'angularjs-facebook-sdk.services'
 ]);
 
-angular.module('angularjs-facebook-sdk').run(['facebookConfig', function (facebookConfig){
-    if (facebookConfig.autoInit) {
-        facebookConfig.init();
+angular.module('angularjs-facebook-sdk').run(['facebookConfig',
+    function (facebookConfig) {
+        if (facebookConfig.autoInit) {
+            facebookConfig.init();
+        }
     }
-}]);
-function FacebookActivityDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:activity ng-attr-app_id="{{appId}}" ng-attr-site="{{site}}" ng-attr-action="{{action}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-header="{{header}}"></fb:activity>',
-    scope: {
-        appId: '@appId',
-        site: '@site',
-        action: '@action',
-        colorschema: '@colorschema',
-        header: '@header'
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+]);
+function FacebookActivityDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:activity ng-attr-app_id="{{appId}}" ng-attr-site="{{site}}" ng-attr-action="{{action}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-header="{{header}}"></fb:activity>',
+        scope: {
+            appId: '@appId',
+            site: '@site',
+            action: '@action',
+            colorschema: '@colorschema',
+            header: '@header'
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookActivityDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbActivity', FacebookActivityDirective);
-function FacebookCommentsDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:comments ng-attr-href="{{href}}" ng-attr-numposts="{{numposts}}" ng-attr-colorscheme="{{colorschema}}"></fb:comments>',
-    scope: {
-        href: '@href',
-        colorschema: '@colorschema',
-        numposts: '@numposts'
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+    .directive('afbActivity', FacebookActivityDirective);
+function FacebookCommentsDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:comments ng-attr-href="{{href}}" ng-attr-numposts="{{numposts}}" ng-attr-colorscheme="{{colorschema}}"></fb:comments>',
+        scope: {
+            href: '@href',
+            colorschema: '@colorschema',
+            numposts: '@numposts'
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookCommentsDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbComments', FacebookCommentsDirective);
-function FacebookFacepileDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:facepile ng-attr-href="{{href}}" ng-attr-width="{{width}}" ng-attr-max_rows="{{maxRows}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-size="{{size}}" ng-attr-show_count="{{showCount}}"></fb:facepile>',
-    scope: {
-        href: '@href',
-        colorschema: '@colorschema',
-        showCount: '@showCount',
-        width: '@width',
-        maxRows: '@maxRows',
-        size: '@size'
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+    .directive('afbComments', FacebookCommentsDirective);
+function FacebookFacepileDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:facepile ng-attr-href="{{href}}" ng-attr-width="{{width}}" ng-attr-max_rows="{{maxRows}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-size="{{size}}" ng-attr-show_count="{{showCount}}"></fb:facepile>',
+        scope: {
+            href: '@href',
+            colorschema: '@colorschema',
+            showCount: '@showCount',
+            width: '@width',
+            maxRows: '@maxRows',
+            size: '@size'
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookFacepileDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbFacepile', FacebookFacepileDirective);
-function FacebookFollowDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:follow ng-attr-href="{{href}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-layout="{{layout}}" ng-attr-show-faces="{{showFaces}}"></fb:follow>',
-    scope: {
-        href: '@href',
-        colorschema: '@colorschema',
-        layout: '@layout',
-        showFaces: '@showFaces'
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+    .directive('afbFacepile', FacebookFacepileDirective);
+function FacebookFollowDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:follow ng-attr-href="{{href}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-layout="{{layout}}" ng-attr-show-faces="{{showFaces}}"></fb:follow>',
+        scope: {
+            href: '@href',
+            colorschema: '@colorschema',
+            layout: '@layout',
+            showFaces: '@showFaces'
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookFollowDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbFollow', FacebookFollowDirective);
-function FacebookLikeDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:like ng-attr-href="{{href}}" ng-attr-layout="{{layout}}" ng-attr-action="{{action}}" ng-attr-show_faces="{{show_faces}}" ng-attr-share="{{share}}"></fb:like>',
-    scope: {
-        href: '@href',
-        layout: '@layout',
-        action: '@action',
-        show_faces: '@showFaces',
-        share: '@share'
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+    .directive('afbFollow', FacebookFollowDirective);
+function FacebookLikeDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:like ng-attr-href="{{href}}" ng-attr-layout="{{layout}}" ng-attr-action="{{action}}" ng-attr-show_faces="{{show_faces}}" ng-attr-share="{{share}}"></fb:like>',
+        scope: {
+            href: '@href',
+            layout: '@layout',
+            action: '@action',
+            show_faces: '@showFaces',
+            share: '@share'
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookLikeDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbLike', FacebookLikeDirective);
-function FacebookLikeboxDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:like-box ng-attr-href="{{href}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-show_faces="{{showFaces}}" ng-attr-header="{{header}}" ng-attr-stream="{{stream}}" ng-attr-show_border="{{showBorder}}"></fb:like-box>',
-    scope: {
-        href: '@href',
-        colorschema: '@colorschema',
-        showFaces: '@showFaces',
-        header: '@header',
-        stream: '@stream',
-        showBorder: '@showBorder'
+    .directive('afbLike', FacebookLikeDirective);
+function FacebookLikeboxDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:like-box ng-attr-href="{{href}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-show_faces="{{showFaces}}" ng-attr-header="{{header}}" ng-attr-stream="{{stream}}" ng-attr-show_border="{{showBorder}}"></fb:like-box>',
+        scope: {
+            href: '@href',
+            colorschema: '@colorschema',
+            showFaces: '@showFaces',
+            header: '@header',
+            stream: '@stream',
+            showBorder: '@showBorder'
 
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookLikeboxDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbLikeBox', FacebookLikeboxDirective);
+    .directive('afbLikeBox', FacebookLikeboxDirective);
 function FacebookLoginDirective(facebookService) {
     return {
         restrict: 'E',
@@ -192,7 +194,7 @@ function FacebookLoginDirective(facebookService) {
                 loginOpts.profile_selector_ids = true;
             }
 
-            return function linkFn (scope, element) {
+            return function linkFn(scope, element) {
                 scope.dispatchLogin = function dispatchLogin() {
                     facebookService.login(loginOpts);
                 };
@@ -205,67 +207,67 @@ FacebookLoginDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
     .directive('afbLogin', FacebookLoginDirective);
-function FacebookLogoutDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<button ng-click="dispatchLogout();">{{label}}</button>',
-    scope: {
-      label: '@label'
-    },
-    link: function (scope, element) {
-      scope.dispatchLogout = function dispatchLogin () {
-        facebookService.logout();
-      };
-    }
-  };
+function FacebookLogoutDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<button ng-click="dispatchLogout();">{{label}}</button>',
+        scope: {
+            label: '@label'
+        },
+        link: function (scope, element) {
+            scope.dispatchLogout = function dispatchLogin() {
+                facebookService.logout();
+            };
+        }
+    };
 }
 
 FacebookLogoutDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbLogout', FacebookLogoutDirective);
-function FacebookNameDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:name ng-attr-uid="{{uid}}"></fb:name>',
-    scope: {
-        uid: '@uid'
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+    .directive('afbLogout', FacebookLogoutDirective);
+function FacebookNameDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:name ng-attr-uid="{{uid}}"></fb:name>',
+        scope: {
+            uid: '@uid'
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookNameDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbName', FacebookNameDirective);
-function FacebookPostDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:post ng-attr-href="{{href}}" ng-attr-width="{{width}}"></fb:post>',
-    scope: {
-        href: '@href',
-        width: '@width'
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+    .directive('afbName', FacebookNameDirective);
+function FacebookPostDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:post ng-attr-href="{{href}}" ng-attr-width="{{width}}"></fb:post>',
+        scope: {
+            href: '@href',
+            width: '@width'
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookPostDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbPost', FacebookPostDirective);
+    .directive('afbPost', FacebookPostDirective);
 function FacebookProfilePicDirective(facebookService) {
     return {
         restrict: 'E',
@@ -277,8 +279,8 @@ function FacebookProfilePicDirective(facebookService) {
             width: '@width',
             height: '@height'
         },
-        compile: function compileFn (tElement, tAttrs) {
-            return function linkFn (scope, element) {
+        compile: function compileFn(tElement, tAttrs) {
+            return function linkFn(scope, element) {
                 facebookService.ready.then(function () {
                     var pictureUrl = (scope.uid) ? scope.uid + "/picture" : "/me/picture";
 
@@ -304,118 +306,148 @@ FacebookProfilePicDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
     .directive('afbProfilePic', FacebookProfilePicDirective);
-function FacebookShareDirective (facebookService) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<fb:share-button ng-attr-href="{{href}}" ng-attr-type="{{type}}"></fb:share-button>',
-    scope: {
-        href: '@href',
-        type: '@type'
-    },
-    link: function (scope, element) {
-        facebookService.ready.then(function(){
-            FB.XFBML.parse(element[0]);
-        });
-    }
-  };
+function FacebookShareDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:share-button ng-attr-href="{{href}}" ng-attr-type="{{type}}"></fb:share-button>',
+        scope: {
+            href: '@href',
+            type: '@type'
+        },
+        link: function (scope, element) {
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+            });
+        }
+    };
 }
 
 FacebookShareDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
-  .directive('afbShareButton', FacebookShareDirective);
+    .directive('afbShareButton', FacebookShareDirective);
 angular.module('angularjs-facebook-sdk.services')
-  .provider('facebookConfig', function () {
-    var _appId = null;
-    var _langCode = 'en_US';
-    var _debug = false;
-    var _autoInit = true;
-
-    /**
-     * Set the Facebook SDK application ID.
-     *
-     * @param {Number} appId The application ID.
-     */
-    this.setAppId = function setAppId (appId) {
-      _appId = appId;
-    };
-
-    /**
-     * Set the language of the framework.
-     * By default the en_US is used.
-     *
-     * @param {String} langCode The language code.
-     */
-    this.setLanguage = function setLanguage (langCode) {
-      _langCode = langCode;
-    };
-
-    /**
-     * Enable/Disable the debug for Facebook SDK.
-     *
-     * @param {Boolean} enableDebug Wheather to enable or disable the debug.
-     */
-    this.setDebug = function setDebug (enableDebug) {
-      _debug = enableDebug;
-    };
-
-    this.autoInit = function autoInit (enableAutoInit) {
-        _autoInit = enableAutoInit;
-    };
-
-    /**
-     * [FacebookProviderFactoryFn description]
-     */
-    function FacebookProviderFactoryFn ($rootScope, $window, $q) {
-      var initDefer = $q.defer();
-
-      $window.fbAsyncInit = function fbAsyncInit () {
-        FB.init({
-          appId      : _appId,
-          status     : true,
-          xfbml      : true
-        });
-
-        $rootScope.$apply(function(){
-            initDefer.resolve();
-        });
-      };
-
-      // The public API
-      return {
-        appId: _appId,
-        lang: _langCode,
-        debug: _debug,
-        autoInit: _autoInit,
-
-        // The initialization promise
-        initialization: initDefer.promise,
+    .provider('facebookConfig', function () {
+        var _appId = null;
+        var _userOptions = {};
+        var _langCode = 'en_US';
+        var _debug = false;
+        var _autoInit = true;
 
         /**
-         * Initialize the Facebook SDK for Javsacript.
-         * This will load the SDK using the configuration passed to the provider.
+         * Set the Facebook SDK application ID.
          *
-         * @return {Promise} The initialize Promise instance.
+         * @param {Number} appId The application ID.
          */
-        init: function () {
-          (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/" + _langCode + (_debug ? "/all/debug.js" : "/all.js");
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
+        this.setAppId = function setAppId(appId) {
+            _appId = appId;
+        };
 
-          return initDefer.promise;
+        /**
+         * Set the language of the framework.
+         * By default the en_US is used.
+         *
+         * @param {String} langCode The language code.
+         */
+        this.setLanguage = function setLanguage(langCode) {
+            _langCode = langCode;
+        };
+
+        /**
+         * Enable/Disable the debug for Facebook SDK.
+         *
+         * @param {Boolean} enableDebug Wheather to enable or disable the debug.
+         */
+        this.setDebug = function setDebug(enableDebug) {
+            _debug = enableDebug;
+        };
+
+        /**
+         * [setOptions description]
+         *
+         * @param {[type]} options [description]
+         */
+        this.setOptions = function setOptions(options) {
+            _userOptions = options;
+        };
+
+
+        /**
+         * Enable/Disable the automatic initialization.
+         *
+         * @param  {Boolean} enableAutoInit Wheather to enable/disable the auto initialization.
+         */
+        this.autoInit = function autoInit(enableAutoInit) {
+            _autoInit = enableAutoInit;
+        };
+
+        /**
+         * [FacebookProviderFactoryFn description]
+         */
+        function FacebookProviderFactoryFn($rootScope, $window, $q) {
+            var defaultOptions = {
+                appId: _appId,
+                status: true,
+                xfbml: true
+            };
+
+            var initDefer = $q.defer();
+            var initOpts = angular.extend(defaultOptions, _userOptions);
+
+            /**
+             * Hook up a method on the window object. This way we can be notified
+             * when the Facebook SDK is ready to be used.
+             *
+             * The initDefer promise is resolved inside this method.
+             *
+             * @return {[type]} [description]
+             */
+            $window.fbAsyncInit = function fbAsyncInit() {
+                FB.init(initOpts);
+
+                $rootScope.$apply(function () {
+                    initDefer.resolve();
+                });
+            };
+
+            // The public API
+            return {
+                appId: _appId,
+                lang: _langCode,
+                debug: _debug,
+                autoInit: _autoInit,
+
+                // The initialization promise
+                initialization: initDefer.promise,
+
+                /**
+                 * Initialize the Facebook SDK for Javsacript.
+                 * This will load the SDK using the configuration passed to the provider.
+                 *
+                 * @return {Promise} The initialize Promise instance.
+                 */
+                init: function () {
+                    (function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) {
+                            return;
+                        }
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//connect.facebook.net/" + _langCode + (_debug ? "/all/debug.js" : "/all.js");
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+
+                    return initDefer.promise;
+                }
+            };
         }
-      };
-    }
 
-    FacebookProviderFactoryFn.$inject = ['$rootScope', '$window', '$q'];
+        FacebookProviderFactoryFn.$inject = ['$rootScope', '$window', '$q'];
 
-    this.$get = FacebookProviderFactoryFn;
-  });
+        this.$get = FacebookProviderFactoryFn;
+    });
 function FacebookService(facebookConfig, $q, $rootScope) {
     var eventEmitter = $rootScope.$new();
 
@@ -578,7 +610,6 @@ function FacebookService(facebookConfig, $q, $rootScope) {
 
             this.ready.then(function () {
                 FB.logout(function () {
-                    eventEmitter.$broadcast('logout');
                     defer.resolve.apply(this, arguments);
                 });
             });
@@ -610,7 +641,17 @@ function FacebookService(facebookConfig, $q, $rootScope) {
          *
          * @return {Promise}
          */
-        getLoginStatus: function () {}
+        getLoginStatus: function () {
+            var defer = $q.defer();
+
+            this.ready.then(function () {
+                FB.getLoginStatus(function () {
+                    defer.resolve.apply(this, arguments);
+                });
+            });
+
+            return defer.promise;
+        }
     };
 }
 

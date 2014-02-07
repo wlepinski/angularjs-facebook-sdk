@@ -22,7 +22,7 @@ function FacebookLoginDirective(facebookService) {
                 loginOpts.profile_selector_ids = true;
             }
 
-            return function linkFn (scope, element) {
+            return function linkFn(scope, element) {
                 scope.dispatchLogin = function dispatchLogin() {
                     facebookService.login(loginOpts);
                 };

@@ -1,6 +1,7 @@
 angular.module('app', ['angularjs-facebook-sdk'])
     .config(function facebookConfig(facebookConfigProvider) {
         facebookConfigProvider.setAppId(394254447322921);
+        facebookConfigProvider.setOptions({ status: false });
     })
     .run(function (facebookConfig, facebookService) {
         facebookService.ready.then(function () {
@@ -16,4 +17,4 @@ angular.module('app', ['angularjs-facebook-sdk'])
 
             facebookService.Event.subscribe('auth.statusChange', statusChangeHandler);
         });
-    })
+    });

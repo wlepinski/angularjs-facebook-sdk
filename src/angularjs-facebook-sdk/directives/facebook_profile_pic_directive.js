@@ -9,8 +9,8 @@ function FacebookProfilePicDirective(facebookService) {
             width: '@width',
             height: '@height'
         },
-        compile: function compileFn (tElement, tAttrs) {
-            return function linkFn (scope, element) {
+        compile: function compileFn(tElement, tAttrs) {
+            return function linkFn(scope, element) {
                 facebookService.ready.then(function () {
                     var pictureUrl = (scope.uid) ? scope.uid + "/picture" : "/me/picture";
 
