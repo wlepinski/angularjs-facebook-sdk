@@ -2,7 +2,7 @@ function FacebookLikeDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:like ng-attr-href="{{href}}" ng-attr-layout="{{layout}}" ng-attr-action="{{action}}" ng-attr-show_faces="{{show_faces}}" ng-attr-share="{{share}}"></fb:like>',
+        template: '<fb:like ng-attr-href ng-attr-layout ng-attr-action ng-attr-show-faces ng-attr-share></fb:like>',
         scope: {
             href: '@href',
             layout: '@layout',
@@ -10,7 +10,8 @@ function FacebookLikeDirective(facebookService) {
             show_faces: '@showFaces',
             share: '@share'
         },
-        link: function (scope, element) {
+        link: function (scope, element, attrs) {
+            console.log(element[0]);
             facebookService.ready.then(function () {
                 FB.XFBML.parse(element[0]);
             });

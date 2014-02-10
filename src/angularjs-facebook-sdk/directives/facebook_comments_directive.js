@@ -2,7 +2,7 @@ function FacebookCommentsDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:comments ng-attr-href="{{href}}" ng-attr-numposts="{{numposts}}" ng-attr-colorscheme="{{colorschema}}"></fb:comments>',
+        template: '<fb:comments ng-attr-href ng-attr-numposts ng-attr-colorscheme></fb:comments>',
         scope: {
             href: '@href',
             colorschema: '@colorschema',

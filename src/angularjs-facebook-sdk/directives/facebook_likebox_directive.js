@@ -2,7 +2,7 @@ function FacebookLikeboxDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:like-box ng-attr-href="{{href}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-show_faces="{{showFaces}}" ng-attr-header="{{header}}" ng-attr-stream="{{stream}}" ng-attr-show_border="{{showBorder}}"></fb:like-box>',
+        template: '<fb:like-box ng-attr-href ng-attr-colorscheme ng-attr-show-faces ng-attr-header ng-attr-stream ng-attr-show-border></fb:like-box>',
         scope: {
             href: '@href',
             colorschema: '@colorschema',
@@ -10,7 +10,6 @@ function FacebookLikeboxDirective(facebookService) {
             header: '@header',
             stream: '@stream',
             showBorder: '@showBorder'
-
         },
         link: function (scope, element) {
             facebookService.ready.then(function () {

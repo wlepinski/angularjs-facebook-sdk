@@ -30,7 +30,7 @@ function FacebookActivityDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:activity ng-attr-app_id="{{appId}}" ng-attr-site="{{site}}" ng-attr-action="{{action}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-header="{{header}}"></fb:activity>',
+        template: '<fb:activity ng-attr-app-id ng-attr-site ng-attr-action ng-attr-colorscheme ng-attr-header></fb:activity>',
         scope: {
             appId: '@appId',
             site: '@site',
@@ -54,7 +54,7 @@ function FacebookCommentsDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:comments ng-attr-href="{{href}}" ng-attr-numposts="{{numposts}}" ng-attr-colorscheme="{{colorschema}}"></fb:comments>',
+        template: '<fb:comments ng-attr-href ng-attr-numposts ng-attr-colorscheme></fb:comments>',
         scope: {
             href: '@href',
             colorschema: '@colorschema',
@@ -76,11 +76,13 @@ function FacebookFacepileDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:facepile ng-attr-href="{{href}}" ng-attr-width="{{width}}" ng-attr-max_rows="{{maxRows}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-size="{{size}}" ng-attr-show_count="{{showCount}}"></fb:facepile>',
+        template: '<fb:facepile ng-attr-href ng-attr-action ng-attr-width ng-attr-max-rows ng-attr-colorscheme ng-attr-size ng-attr-show-count></fb:facepile>',
         scope: {
             href: '@href',
+            action: '@action',
             colorschema: '@colorschema',
             showCount: '@showCount',
+            height: '@height',
             width: '@width',
             maxRows: '@maxRows',
             size: '@size'
@@ -101,7 +103,7 @@ function FacebookFollowDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:follow ng-attr-href="{{href}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-layout="{{layout}}" ng-attr-show-faces="{{showFaces}}"></fb:follow>',
+        template: '<fb:follow ng-attr-href ng-attr-colorscheme ng-attr-layout ng-attr-show-faces></fb:follow>',
         scope: {
             href: '@href',
             colorschema: '@colorschema',
@@ -124,7 +126,7 @@ function FacebookLikeDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:like ng-attr-href="{{href}}" ng-attr-layout="{{layout}}" ng-attr-action="{{action}}" ng-attr-show_faces="{{show_faces}}" ng-attr-share="{{share}}"></fb:like>',
+        template: '<fb:like ng-attr-href ng-attr-layout ng-attr-action ng-attr-show-faces ng-attr-share></fb:like>',
         scope: {
             href: '@href',
             layout: '@layout',
@@ -132,7 +134,8 @@ function FacebookLikeDirective(facebookService) {
             show_faces: '@showFaces',
             share: '@share'
         },
-        link: function (scope, element) {
+        link: function (scope, element, attrs) {
+            console.log(element[0]);
             facebookService.ready.then(function () {
                 FB.XFBML.parse(element[0]);
             });
@@ -148,7 +151,7 @@ function FacebookLikeboxDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:like-box ng-attr-href="{{href}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-show_faces="{{showFaces}}" ng-attr-header="{{header}}" ng-attr-stream="{{stream}}" ng-attr-show_border="{{showBorder}}"></fb:like-box>',
+        template: '<fb:like-box ng-attr-href ng-attr-colorscheme ng-attr-show-faces ng-attr-header ng-attr-stream ng-attr-show-border></fb:like-box>',
         scope: {
             href: '@href',
             colorschema: '@colorschema',
@@ -156,7 +159,6 @@ function FacebookLikeboxDirective(facebookService) {
             header: '@header',
             stream: '@stream',
             showBorder: '@showBorder'
-
         },
         link: function (scope, element) {
             facebookService.ready.then(function () {
@@ -231,7 +233,7 @@ function FacebookNameDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:name ng-attr-uid="{{uid}}"></fb:name>',
+        template: '<fb:name ng-attr-uid></fb:name>',
         scope: {
             uid: '@uid'
         },
@@ -251,7 +253,7 @@ function FacebookPostDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:post ng-attr-href="{{href}}" ng-attr-width="{{width}}"></fb:post>',
+        template: '<fb:post ng-attr-href ng-attr-width></fb:post>',
         scope: {
             href: '@href',
             width: '@width'
@@ -272,7 +274,7 @@ function FacebookProfilePicDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<img ng-attr-width="{{width}}" ng-attr-height="{{height}}" />',
+        template: '<img ng-attr-width ng-attr-height />',
         scope: {
             uid: '@uid',
             type: '@type',
@@ -310,7 +312,7 @@ function FacebookShareDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:share-button ng-attr-href="{{href}}" ng-attr-type="{{type}}"></fb:share-button>',
+        template: '<fb:share-button ng-attr-href ng-attr-type></fb:share-button>',
         scope: {
             href: '@href',
             type: '@type'
@@ -458,6 +460,7 @@ function FacebookService(facebookConfig, $q, $rootScope) {
             /**
              * FB.Event.subscribe allows you to define callbacks that will be called when
              * certain events take place on your site. These events include:
+             *
              *     - Logging in or logging out via Facebook Login
              *     - Someone likes or unlikes a page via an embedded like button
              *     - Rendering of social plugins

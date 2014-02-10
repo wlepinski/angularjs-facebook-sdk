@@ -2,7 +2,7 @@ function FacebookNameDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:name ng-attr-uid="{{uid}}"></fb:name>',
+        template: '<fb:name ng-attr-uid></fb:name>',
         scope: {
             uid: '@uid'
         },

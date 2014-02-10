@@ -2,7 +2,7 @@ function FacebookFollowDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:follow ng-attr-href="{{href}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-layout="{{layout}}" ng-attr-show-faces="{{showFaces}}"></fb:follow>',
+        template: '<fb:follow ng-attr-href ng-attr-colorscheme ng-attr-layout ng-attr-show-faces></fb:follow>',
         scope: {
             href: '@href',
             colorschema: '@colorschema',

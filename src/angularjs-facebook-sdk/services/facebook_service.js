@@ -8,6 +8,7 @@ function FacebookService(facebookConfig, $q, $rootScope) {
             /**
              * FB.Event.subscribe allows you to define callbacks that will be called when
              * certain events take place on your site. These events include:
+             *
              *     - Logging in or logging out via Facebook Login
              *     - Someone likes or unlikes a page via an embedded like button
              *     - Rendering of social plugins

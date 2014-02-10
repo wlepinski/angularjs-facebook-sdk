@@ -2,7 +2,7 @@ function FacebookProfilePicDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<img ng-attr-width="{{width}}" ng-attr-height="{{height}}" />',
+        template: '<img ng-attr-width ng-attr-height />',
         scope: {
             uid: '@uid',
             type: '@type',

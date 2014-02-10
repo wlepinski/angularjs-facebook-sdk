@@ -2,7 +2,7 @@ function FacebookShareDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:share-button ng-attr-href="{{href}}" ng-attr-type="{{type}}"></fb:share-button>',
+        template: '<fb:share-button ng-attr-href ng-attr-type></fb:share-button>',
         scope: {
             href: '@href',
             type: '@type'

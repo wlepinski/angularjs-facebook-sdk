@@ -1,100 +1,139 @@
 <!doctype html>
 <html xmlns:fb="http://ogp.me/ns/fb#" ng-app="app">
 <head>
-  <meta charset="UTF-8">
-  <title>Angularjs-facebook-sdk example</title>
-  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
-  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
-  <script type="text/javascript">
-  hljs.configure({tabReplace: '    '}); // 4 spaces
-  hljs.initHighlightingOnLoad();
-</script>
+    <meta charset="UTF-8">
+    <title>Angularjs-facebook-sdk example</title>
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <link rel="stylesheet" href="http://highlightjs.org/static/styles/tomorrow.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300,500">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.14.1/build/cssreset/cssreset-min.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script type="text/javascript">
+        hljs.configure({tabReplace: '    '}); // 4 spaces
+        hljs.initHighlightingOnLoad();
+    </script>
 </head>
 <body>
+    <script type="text/ng-template" id="component.tpl">
+        <section class="component">
+            <header>
+                <h2>{{name}}</h2>
+            </header>
+            <div class="component-content">
+                <div class="result">
+                    <h4>Result</h4>
+                </div>
 
-    <section>
-        <header>
-            <h2>afg:name</h2>
-        </header>
-        <div class="box">
-            <div class="result">
-                <h4>Result</h4>
+                <div class="usage">
+                    <h4>Usage</h4>
+                    <pre ng-bind-html="component.usage"></pre>
+                </div>
+            </div>
+    </script>
+
+    <h1>Documentation: angularjs.facebook.sdk</h1>
+
+    <component name="afg:name">
+        <data>
+            <component:declaration ng-non-bindable>
                 <afb:name uid="577763696"></afb:name>
-            </div>
+            </component:declaration>
+        </data>
+    </component>
 
-            <div class="usage">
-                <h4>Usage</h4>
-                <pre>
-                    <code>
-                        &lt;afb:name uid="577763696"&gt;&lt;/afb:name&gt;
-                    </code>
-                </pre>
-            </div>
-        </div>
-    </section>
+    <component name="afb:profile:pic">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:profile:pic type="square" width="40" height="40" uid="577763696"></afb:profile:pic>
+            </component:declaration>
+        </data>
+    </component>
 
-    <section>
-        <header>
-            <h2>afb:profile:pic</h2>
-        </header>
-        <div class="box">
-            <div class="result">
-                <h4>Result</h4>
-                <afb:profile:pic type="square" width="25" height="25" uid="577763696"></afb:profile:pic>
-            </div>
+    <component name="afb:login">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:login label="Login" scope="email, read_stream, read_friendlists, user_actions.video"></afb:login>
+            </component:declaration>
+        </data>
+    </component>
 
-            <div class="usage">
-                <h4>Usage</h4>
-                <pre>
-                    <code>
-                        &lt;afb:profile:pic type=&quot;square&quot; width=&quot;25&quot; height=&quot;25&quot; uid=&quot;577763696&quot;&gt;&lt;/afb:profile:pic&gt;
-                    </code>
-                </pre>
-            </div>
-        </div>
-    </section>
+    <component name="afb:logout">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:logout label="Logout"></afb:logout>
+            </component:declaration>
+        </data>
+    </component>
 
+    <component name="afb:like">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="button_count" action="like" show-faces="true" share="false"></afb:like>
+            </component:declaration>
+        </data>
+    </component>
 
+    <component name="afb:share">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:share:button href="https://github.com/wlepinski/angularjs-facebook-sdk" type="button_count"></afb:share:button>
+            </component:declaration>
+        </data>
+    </component>
 
-    <afb:login label="Login" scope="email, read_stream, read_friendlists, user_actions.video"></afb:login>
-    <afb:logout label="Logout"></afb:logout>
+    <component name="afb:post">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:post href="https://www.facebook.com/FacebookDevelopers/posts/10151856791168553" width="500"></afb:post>
+            </component:declaration>
+        </data>
+    </component>
 
-  <p>
-    <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="button_count" action="like" show-faces="true" share="false"></afb:like>
-    <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="box_count" action="like" show-faces="false" share="true"></afb:like>
-    <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="box_count" action="like" show-faces="false" share="false"></afb:like>
-  </p>
+    <component name="afb:follow">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:follow href="http://www.facebook.com/zuck" colorscheme="light" layout="standard" show-faces="true"></afb:follow>
+            </component:declaration>
+        </data>
+    </component>
 
-  <p>
-    <afb:share:button href="https://github.com/wlepinski/angularjs-facebook-sdk" type="button_count"></afb:share:button>
-  </p>
+    <component name="afb:comments">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:comments href="https://github.com/wlepinski/angularjs-facebook-sdk" numposts="5" colorscheme="light"></afb:comments>
+            </component:declaration>
+        </data>
+    </component>
 
-  <p>
-    <afb:post href="https://www.facebook.com/FacebookDevelopers/posts/10151856791168553" width="500"></afb:post>
-  </p>
+    <component name="afb:like:box">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:like:box href="http://www.facebook.com/github" colorscheme="light" show-faces="true" header="true" stream="false" show-border="true"></afb:like:box>
+            </component:declaration>
+        </data>
+    </component>
 
-  <p>
-    <afb:follow href="http://www.facebook.com/zuck" colorscheme="light" layout="standard" show-faces="true"></afb:follow>
-  </p>
+    <component name="afb:facepile">
+        <data>
+            <component:documentation url="https://developers.facebook.com/docs/plugins/facepile/"></component:documentation>
+            <component:declaration ng-non-bindable>
+                <afb:facepile href="http://facebook.com/FacebookDevelopers" colorscheme="light" max-rows="3" size="small" show-count="true"></afb:facepile>
+            </component:declaration>
+        </data>
+    </component>
 
-  <p>
-    <afb:comments href="https://github.com/wlepinski/angularjs-facebook-sdk" numposts="5" colorscheme="light"></afb:comments>
-  </p>
+    <component name="afb:activity">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:activity app-id="177530099095061" site="kinetoscope.herokuapp.com" action="likes, recommends" colorscheme="light" header="true"></afb:activity>
+            </component:declaration>
+        </data>
+    </component>
 
-  <p>
-    <afb:like:box href="http://www.facebook.com/github" colorscheme="light" show-faces="true" header="true" stream="false" show-border="true"></afb:like:box>
-  </p>
-
-  <p>
-    <afb:facepile href="http://facebook.com/FacebookDevelopers" colorscheme="light" size="small" show-count="true"></afb:facepile>
-  </p>
-
-  <p>
-      <afb:activity app-id="177530099095061" site="kinetoscope.herokuapp.com" action="likes, recommends" colorscheme="light" header="true"></afb:activity>
-  </p>
-
-  <script src="angular/angular.js"></script>
-  <script src="angularjs-facebook-sdk.js"></script>
-  <script src="app.js"></script>
+    <script src="jquery/jquery.js"></script>
+    <script src="angular/angular.js"></script>
+    <script src="angularjs-facebook-sdk.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

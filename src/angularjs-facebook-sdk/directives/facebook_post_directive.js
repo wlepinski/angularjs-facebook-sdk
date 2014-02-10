@@ -2,7 +2,7 @@ function FacebookPostDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:post ng-attr-href="{{href}}" ng-attr-width="{{width}}"></fb:post>',
+        template: '<fb:post ng-attr-href ng-attr-width></fb:post>',
         scope: {
             href: '@href',
             width: '@width'

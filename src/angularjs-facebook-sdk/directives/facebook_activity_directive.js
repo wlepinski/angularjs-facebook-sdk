@@ -2,7 +2,7 @@ function FacebookActivityDirective(facebookService) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<fb:activity ng-attr-app_id="{{appId}}" ng-attr-site="{{site}}" ng-attr-action="{{action}}" ng-attr-colorscheme="{{colorschema}}" ng-attr-header="{{header}}"></fb:activity>',
+        template: '<fb:activity ng-attr-app-id ng-attr-site ng-attr-action ng-attr-colorscheme ng-attr-header></fb:activity>',
         scope: {
             appId: '@appId',
             site: '@site',
