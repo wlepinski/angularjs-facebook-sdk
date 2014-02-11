@@ -11,7 +11,6 @@ function FacebookLikeDirective(facebookService) {
             share: '@share'
         },
         link: function (scope, element, attrs) {
-            console.log(element[0]);
             facebookService.ready.then(function () {
                 FB.XFBML.parse(element[0]);
             });
