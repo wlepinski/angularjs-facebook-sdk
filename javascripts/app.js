@@ -5,11 +5,13 @@ angular.module('app', ['angularjs-facebook-sdk'])
       status: true
     });
   })
-  .run(function (facebookConfig, facebookService) {
+  .run(function (facebookService) {
     facebookService.ready.then(function () {
       console.log('Facebook is ready!');
 
       var statusChangeHandler = function (response) {
+        console.log(response);
+
         if (response.status === 'connected') {
           facebookService.api('/me').then(function (response) {
             console.log(response);

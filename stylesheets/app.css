@@ -25,7 +25,7 @@ body {
 .component .result,
 .component .usage {
   position: relative;
-  background: #EEE;
+  background: #FFF;
   padding: 29px 20px 10px;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .component .usage {
-  background: #FFF;
+  border-top: 1px dotted #DDD;
   border-radius: 5px;
 }
 

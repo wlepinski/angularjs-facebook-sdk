@@ -65,10 +65,10 @@ code, pre {
 }
 
 pre {
-  padding:8px 15px;
-  background: #f8f8f8;
-  border-radius:5px;
-  border:1px solid #e5e5e5;
+  /*padding:8px 15px;*/
+  /*background: #f8f8f8;*/
+  /*border-radius:5px;*/
+  /*border:1px solid #e5e5e5;*/
   overflow-x: auto;
 }
 
@@ -160,7 +160,7 @@ header.main-header ul a strong {
   color:#222;
 }
 
-section {
+#main-section {
   width: 540px;
   float:right;
   padding-bottom:50px;

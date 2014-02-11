@@ -30,8 +30,7 @@
     <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script type="text/javascript">
       hljs.configure({
-        tabReplace: '    ',
-        useBR: true
+        tabReplace: '    '
       });
       hljs.initHighlightingOnLoad();
     </script>
@@ -62,7 +61,6 @@
 
         <p class="view"><a href="https://github.com/wlepinski/angularjs-facebook-sdk">View the Project on GitHub <small>wlepinski/angularjs-facebook-sdk</small></a></p>
 
-
         <ul>
           <li><a href="https://github.com/wlepinski/angularjs-facebook-sdk/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/wlepinski/angularjs-facebook-sdk/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -71,103 +69,173 @@
 
         <afb:like href="http://wlepinski.github.io/angularjs-facebook-sdk/" action="like" show-faces="true" share="true"></afb:like>
       </header>
-      <section>
-        <component name="afb:name">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:name uid="4"></afb:name>
-                </component:declaration>
-            </data>
-        </component>
 
-        <component name="afb:profile:pic">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:profile:pic type="square" width="40" height="40" uid="4"></afb:profile:pic>
-                </component:declaration>
-            </data>
-        </component>
+      <section id="main-section">
+        <section id="installing-section">
+          <h1>Installing</h1>
 
-        <component name="afb:login">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:login label="Login" scope="email, read_stream, read_friendlists, user_actions.video"></afb:login>
-                </component:declaration>
-            </data>
-        </component>
+          <p>The project is registered on <strong>bower</strong>. To install it using the following command <code>bower install angularjs-facebook-sdk --save</code> inside your project.</p>
 
-        <component name="afb:logout">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:logout label="Logout"></afb:logout>
-                </component:declaration>
-            </data>
-        </component>
+          <p>You'll need to refer the module on your main application module like below:</p>
+          <pre class="js"><code>angular.module('yourModule', ['angularjs-facebook-sdk'])</code></pre>
 
-        <component name="afb:like">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:like href="http://wlepinski.github.io/angularjs-facebook-sdk/" layout="button_count" action="like" show-faces="true" share="false"></afb:like>
-                </component:declaration>
-            </data>
-        </component>
+        </section>
 
-        <component name="afb:share">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:share:button href="http://wlepinski.github.io/angularjs-facebook-sdk/" type="button_count"></afb:share:button>
-                </component:declaration>
-            </data>
-        </component>
+        <section id="services-section">
+          <h1>Services</h1>
 
-        <component name="afb:post">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:post href="https://www.facebook.com/FacebookDevelopers/posts/10151856791168553" width="500"></afb:post>
-                </component:declaration>
-            </data>
-        </component>
+          <h2>facebookConfigProvider</h2>
+          <p>This service is mainly used during the configuration phase.</p>
 
-        <component name="afb:follow">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:follow href="http://www.facebook.com/zuck" colorscheme="light" layout="standard" show-faces="true"></afb:follow>
-                </component:declaration>
-            </data>
-        </component>
+<pre class="js"><code>angular.module('app', ['angularjs-facebook-sdk'])
+    .config(function facebookConfig (facebookConfigProvider) {
+      facebookConfigProvider.setAppId(207348272805163);
+      facebookConfigProvider.setLanguage('en-US');
+      facebookConfigProvider.setDebug(true);
 
-        <component name="afb:comments">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:comments href="http://wlepinski.github.io/angularjs-facebook-sdk/" width="500" numposts="5" colorscheme="light"></afb:comments>
-                </component:declaration>
-            </data>
-        </component>
+      // When autoInit is setted to false you need to initialize
+      // the facebookConfig service manually inside a run block.
+      facebookConfigProvider.autoInit(false);
 
-        <component name="afb:like:box">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:like:box href="https://www.facebook.com/kinetoscopeapp" colorscheme="light" show-faces="true" header="true" stream="false" show-border="true"></afb:like:box>
-                </component:declaration>
-            </data>
-        </component>
+      // Same: developers.facebook.com/docs/javascript/reference/FB.init/
+      facebookConfigProvider.setOptions({
+        status: true
+      });
+    })</code></pre>
 
-        <component name="afb:facepile">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:facepile href="http://wlepinski.github.io/angularjs-facebook-sdk/" colorscheme="light" max-rows="3" size="small" show-count="true"></afb:facepile>
-                </component:declaration>
-            </data>
-        </component>
+          <h2>facebookConfig</h2>
+          <p>Getter of <strong>facebookConfigProvider</strong>.</p>
 
-        <component name="afb:activity">
-            <data>
-                <component:declaration ng-non-bindable>
-                    <afb:activity app-id="177530099095061" site="http://kinetoscope.herokuapp.com" action="likes, favorites, recommends" colorscheme="light" header="true"></afb:activity>
-                </component:declaration>
-            </data>
-        </component>
+<pre class="js"><code>angular.module('app', ['angularjs-facebook-sdk'])
+    .run(function appRunner(facebookConfig) {
+      // Only need when auto initialization is disabled
+      // using facebookConfigProvider.autoInit(false)
+      facebookConfig.init().then(function(){
+        console.log('Facebook SDK is loaded.');
+      });
+    })</code></pre>
+
+          <h2>facebookService</h2>
+          <p>This is the main service that encapsulates all operations available on the Facebook Javascript SDK.</p>
+          <p>All operations are wrapped inside AngularJS life-cycle and they're all Promise-based. For example, the example below shows how to use the <code>facebookService.ready</code> promise to know when the initialization process is complete.</p>
+
+<pre class="js"><code>angular.module('app')
+  .run(function (facebookService) {
+    facebookService.ready.then(function () {
+      var statusHandler = function (response) {
+        if (response.status === 'connected') {
+          facebookService.api('/me').then(function (response) {
+            console.log(response);
+          });
+        }
+      };
+
+      facebookService.Event.subscribe('auth.statusChange', statusHandler);
+    });
+  })</code></pre>
+        </section>
+
+        <section id="directives-section">
+          <h1>Directives</h1>
+
+          <component name="afb:name">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:name uid="4"></afb:name>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:profile:pic">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:profile:pic type="square" width="40" height="40" uid="4"></afb:profile:pic>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:login">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:login label="Login" scope="email, read_stream, read_friendlists, user_actions.video"></afb:login>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:logout">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:logout label="Logout"></afb:logout>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:like">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:like href="http://wlepinski.github.io/angularjs-facebook-sdk/" layout="button_count" action="like" show-faces="true" share="false"></afb:like>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:share">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:share:button href="http://wlepinski.github.io/angularjs-facebook-sdk/" type="button_count"></afb:share:button>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:post">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:post href="https://www.facebook.com/FacebookDevelopers/posts/10151856791168553" width="500"></afb:post>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:follow">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:follow href="http://www.facebook.com/zuck" colorscheme="light" layout="standard" show-faces="true"></afb:follow>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:comments">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:comments href="http://wlepinski.github.io/angularjs-facebook-sdk/" width="500" numposts="5" colorscheme="light"></afb:comments>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:like:box">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:like:box href="https://www.facebook.com/kinetoscopeapp" colorscheme="light" show-faces="true" header="true" stream="false" show-border="true"></afb:like:box>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:facepile">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:facepile href="http://wlepinski.github.io/angularjs-facebook-sdk/" colorscheme="light" max-rows="3" size="small" show-count="true"></afb:facepile>
+                  </component:declaration>
+              </data>
+          </component>
+
+          <component name="afb:activity">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:activity app-id="177530099095061" site="http://kinetoscope.herokuapp.com" action="likes, favorites, recommends" colorscheme="light" header="true"></afb:activity>
+                  </component:declaration>
+              </data>
+          </component>
+        </section>
       </section>
+
       <footer>
         <p>This project is maintained by <a href="https://github.com/wlepinski">wlepinski</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
