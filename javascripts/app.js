@@ -10,8 +10,6 @@ angular.module('app', ['angularjs-facebook-sdk'])
       console.log('Facebook is ready!');
 
       var statusChangeHandler = function (response) {
-        console.log(response);
-
         if (response.status === 'connected') {
           facebookService.api('/me').then(function (response) {
             console.log(response);
