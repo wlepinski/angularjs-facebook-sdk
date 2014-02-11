@@ -5,7 +5,7 @@ Integration between AngularJS and Facebook SDK for Javascript.
 
 ### Documentation
 
-[wlepinski.github.io/angularjs-facebook-sdk/](wlepinski.github.io/angularjs-facebook-sdk/)
+[wlepinski.github.io/angularjs-facebook-sdk/](http://wlepinski.github.io/angularjs-facebook-sdk/)
 
 ### Compiling from source
 
