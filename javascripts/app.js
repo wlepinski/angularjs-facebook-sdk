@@ -1,8 +1,8 @@
 angular.module('app', ['angularjs-facebook-sdk'])
   .config(function facebookConfig(facebookConfigProvider) {
-    facebookConfigProvider.setAppId(394254447322921);
+    facebookConfigProvider.setAppId(207348272805163);
     facebookConfigProvider.setOptions({
-      status: false
+      status: true
     });
   })
   .run(function (facebookConfig, facebookService) {
