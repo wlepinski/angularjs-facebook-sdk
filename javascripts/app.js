@@ -35,9 +35,37 @@ angular.module('app', ['angularjs-facebook-sdk'])
           transcludeFn(scope, function (clonedElement, scope) {
             var componentDeclaration = clonedElement.find('component\\:declaration').html();
             var componentDocumentation = clonedElement.find('component\\:documentation');
+            var componentEvents = clonedElement.find('component\\:events');
 
             if (componentDocumentation.length > 0) {
-              scope.documentation = componentDocumentation.attr('url');
+              scope.documentation = {
+                label: componentDocumentation.attr('label'),
+                url: componentDocumentation.attr('url')
+              }
+            }
+
+            if (componentEvents.length > 0) {
+              scope.component.events = [];
+
+              componentEvents = componentEvents.find('component\\:event');
+              componentEvents.each(function (index, eventElement){
+                eventElement = $(eventElement);
+
+                var componentEvent = {
+                  name: eventElement.attr('name'),
+                  params: []
+                };
+
+                $(eventElement).find('component\\:event\\:param').each(function(index, paramElement){
+                  paramElement = $(paramElement);
+
+                  componentEvent.params.push({
+                    name: paramElement.attr('name'),
+                    description: paramElement.attr('description')
+                  });
+                });
+                scope.component.events.push(componentEvent);
+              });
             }
 
             // Result

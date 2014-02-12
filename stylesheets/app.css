@@ -19,18 +19,16 @@ body {
   letter-spacing: -1px;
   padding: 10px;
   margin: 0;
-  border-bottom: 1px dotted #DDD;
 }
 
-.component .result,
-.component .usage {
+.component .component-content section {
   position: relative;
+  border-top: 1px dotted #DDD;
   background: #FFF;
   padding: 29px 20px 10px;
 }
 
-.component .result h4,
-.component .usage h4 {
+.component .component-content section h4 {
   background: #CCC;
   display: inline-block;
   position: absolute;
@@ -41,12 +39,16 @@ body {
   font-size: 12px;
 }
 
-.component .usage {
-  border-top: 1px dotted #DDD;
-  border-radius: 5px;
+.component dl,
+.component table {
+  margin: 0;
 }
 
-.component .usage pre {
+.component pre {
   min-height: 10px;
   margin: 0;
+}
+
+.component table {
+  border: 1px solid #DDD;
 }

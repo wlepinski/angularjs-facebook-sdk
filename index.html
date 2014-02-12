@@ -42,14 +42,37 @@
             <h2>{{name}}</h2>
         </header>
         <div class="component-content">
-            <div class="result">
+            <section class="result">
                 <h4>Result</h4>
-            </div>
+            </section>
 
-            <div class="usage">
+            <section class="usage">
                 <h4>Usage</h4>
                 <pre ng-bind-html="component.usage"></pre>
-            </div>
+            </section>
+
+            <section class="events" ng-show="component.events">
+                <h4>Events</h4>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Attribute</th>
+                      <th>Parameters</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="event" ng-repeat="event in component.events">
+                      <th>{{event.name}}</th>
+                      <td>
+                        <dl>
+                          <dt ng-repeat-start="param in event.params">{{param.name}}</dt>
+                          <dd ng-repeat-end>{{param.description}}</dd>
+                        </dl>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </section>
         </div>
       </section>
     </script>
@@ -170,11 +193,34 @@
               </data>
           </component>
 
+          <component name="afb:send">
+              <data>
+                  <component:declaration ng-non-bindable>
+                      <afb:send href="http://wlepinski.github.io/angularjs-facebook-sdk/"></afb:send>
+                  </component:declaration>
+              </data>
+          </component>
+
           <component name="afb:like">
               <data>
                   <component:declaration ng-non-bindable>
-                      <afb:like href="http://wlepinski.github.io/angularjs-facebook-sdk/" layout="button_count" action="like" show-faces="true" share="false"></afb:like>
+                      <afb:like
+                        href="http://wlepinski.github.io/angularjs-facebook-sdk/"
+                        layout="button_count"
+                        action="like"
+                        show-faces="true"
+                        share="false"
+                        on-edge-created="onEdgeCreated(url);"
+                        on-edge-removed="onEdgeRemoved(url);"></afb:like>
                   </component:declaration>
+                  <component:events>
+                    <component:event name="on-edge-created">
+                      <component:event:param name="url" description="The url liked.">
+                    </component:event>
+                    <component:event name="on-edge-removed">
+                      <component:event:param name="url" description="The url liked.">
+                    </component:event>
+                  </component:events>
               </data>
           </component>
 
@@ -205,8 +251,26 @@
           <component name="afb:comments">
               <data>
                   <component:declaration ng-non-bindable>
-                      <afb:comments href="http://wlepinski.github.io/angularjs-facebook-sdk/" width="500" numposts="5" colorscheme="light"></afb:comments>
+                      <afb:comments
+                        href="http://wlepinski.github.io/angularjs-facebook-sdk/"
+                        width="500"
+                        numposts="5"
+                        colorscheme="light"
+                        on-comment-created="onCommentCreated(href, commentID, parentCommentID);"
+                        on-comment-removed="onCommentRemoved(href, commentID, parentCommentID);"></afb:comments>
                   </component:declaration>
+                  <component:events>
+                    <component:event name="on-comment-created">
+                      <component:event:param name="href" description="The url liked.">
+                      <component:event:param name="commentID" description="The url liked.">
+                      <component:event:param name="parentCommentID" description="The url liked.">
+                    </component:event>
+                    <component:event name="on-comment-removed">
+                      <component:event:param name="href" description="The url liked.">
+                      <component:event:param name="commentID" description="The url liked.">
+                      <component:event:param name="parentCommentID" description="The url liked.">
+                    </component:event>
+                  </component:events>
               </data>
           </component>
 
