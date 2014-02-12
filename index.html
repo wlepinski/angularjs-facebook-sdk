@@ -198,6 +198,11 @@
                   <component:declaration ng-non-bindable>
                       <afb:send href="http://wlepinski.github.io/angularjs-facebook-sdk/"></afb:send>
                   </component:declaration>
+                  <component:events>
+                    <component:event name="message-send">
+                      <component:event:param name="url" description="The url sended.">
+                    </component:event>
+                  </component:events>
               </data>
           </component>
 
@@ -261,14 +266,14 @@
                   </component:declaration>
                   <component:events>
                     <component:event name="on-comment-created">
-                      <component:event:param name="href" description="The url liked.">
-                      <component:event:param name="commentID" description="The url liked.">
-                      <component:event:param name="parentCommentID" description="The url liked.">
+                      <component:event:param name="href" description="The url commented.">
+                      <component:event:param name="commentID" description="The comment id created.">
+                      <component:event:param name="parentCommentID" description="The replied comment.">
                     </component:event>
                     <component:event name="on-comment-removed">
-                      <component:event:param name="href" description="The url liked.">
-                      <component:event:param name="commentID" description="The url liked.">
-                      <component:event:param name="parentCommentID" description="The url liked.">
+                      <component:event:param name="href" description="The url commented.">
+                      <component:event:param name="commentID" description="The comment id created.">
+                      <component:event:param name="parentCommentID" description="The replied comment.">
                     </component:event>
                   </component:events>
               </data>
