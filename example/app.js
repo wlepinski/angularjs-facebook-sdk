@@ -18,6 +18,49 @@ angular.module('app', ['angularjs-facebook-sdk'])
             facebookService.Event.subscribe('auth.statusChange', statusChangeHandler);
         });
     })
+    .filter('log', function() {
+        return function () {
+            console.log(arguments);
+        }
+    })
+    .controller('ComponentsController', function ($scope, facebookService) {
+        $scope.onEdgeCreated = function onEdgeCreated (url) {
+            console.log('onEdgeCreated', arguments);
+        }
+
+        $scope.onEdgeRemoved = function onEdgeRemoved (url) {
+            console.log('onEdgeRemoved', arguments);
+        }
+
+        $scope.onCommentCreated = function onCommentCreated (href, commentID, parentCommentID) {
+            console.log('onCommentCreated', arguments);
+        }
+
+        $scope.onCommentRemoved = function onCommentRemoved (href, commentID, parentCommentID) {
+            console.log('onCommentRemoved', arguments);
+        }
+
+        facebookService.ready.then(function(){
+            FB.Event.subscribe('message.send', function messageSend (argument) {
+                console.log(arguments);
+            });
+        })
+
+        $scope.onMessageSend = function onMessageSend (url) {
+            console.log('onMessageSend', arguments);
+        }
+    })
+    .directive('test', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                edgeCreated: '&onEdgeCreated'
+            },
+            link: function (scope, element) {
+                scope.edgeCreated({ url: 'Test' });
+            }
+        }
+    })
     .directive('component', function ($compile, $sce) {
         return {
             restrict: 'E',
@@ -39,7 +82,7 @@ angular.module('app', ['angularjs-facebook-sdk'])
                         }
 
                         // Result
-                        var result = $compile(componentDeclaration)(scope);
+                        var result = $compile(componentDeclaration)(scope.$parent);
                         element.find('.result').append(result);
 
                         // Usage

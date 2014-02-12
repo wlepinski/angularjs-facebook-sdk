@@ -8,11 +8,36 @@ function FacebookLikeDirective(facebookService) {
             layout: '@layout',
             action: '@action',
             show_faces: '@showFaces',
-            share: '@share'
+            share: '@share',
+            // Events
+            edgeCreated: '&onEdgeCreated',
+            edgeRemoved: '&onEdgeRemoved'
         },
         link: function (scope, element, attrs) {
+            function edgeCreatedHandler(url, htmlElement) {
+                if (htmlElement === element[0]) {
+                    // Call the scope event if the htmlElement match
+                    scope.edgeCreated({url: url});
+                }
+            }
+
+            function edgeRemovedHandler(url, htmlElement) {
+                if (htmlElement === element[0]) {
+                    // Call the scope event if the htmlElement match
+                    scope.edgeRemoved({url: url});
+                }
+            }
+
             facebookService.ready.then(function () {
                 FB.XFBML.parse(element[0]);
+                facebookService.Event.subscribe('edge.create', edgeCreatedHandler);
+                facebookService.Event.subscribe('edge.remove', edgeRemovedHandler);
+            });
+
+            // Listen for scope removal and unsubscribe some previously added events.
+            scope.$on('$destroy', function () {
+                facebookService.Event.unsubscribe('edge.create', edgeCreatedHandler);
+                facebookService.Event.unsubscribe('edge.remove', edgeRemovedHandler);
             });
         }
     };

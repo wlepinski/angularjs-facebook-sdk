@@ -58,11 +58,37 @@ function FacebookCommentsDirective(facebookService) {
         scope: {
             href: '@href',
             colorschema: '@colorschema',
-            numposts: '@numposts'
+            numposts: '@numposts',
+            // Events
+            commentCreated: '&onCommentCreated',
+            commentRemoved: '&onCommentRemoved'
         },
         link: function (scope, element) {
+            function commentCreatedHandler(data) {
+                if (data.href === scope.href) {
+                    // Call the scope event if the htmlElement match
+                    scope.commentCreated(data);
+                }
+            }
+
+            function commentRemovedHandler(data) {
+                if (data.href === scope.href) {
+                    // Call the scope event if the htmlElement match
+                    scope.commentRemoved(data);
+                }
+            }
+
             facebookService.ready.then(function () {
                 FB.XFBML.parse(element[0]);
+
+                facebookService.Event.subscribe('comment.create', commentCreatedHandler);
+                facebookService.Event.subscribe('comment.remove', commentRemovedHandler);
+            });
+
+            // Listen for scope removal and unsubscribe some previously added events.
+            scope.$on('$destroy', function () {
+                facebookService.Event.unsubscribe('comment.create', commentCreatedHandler);
+                facebookService.Event.unsubscribe('comment.remove', commentRemovedHandler);
             });
         }
     };
@@ -122,7 +148,7 @@ FacebookFollowDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
     .directive('afbFollow', FacebookFollowDirective);
-function FacebookLikeDirective(facebookService) {
+function FacebookLikeDirective(facebookService, $parse) {
     return {
         restrict: 'E',
         replace: true,
@@ -132,17 +158,42 @@ function FacebookLikeDirective(facebookService) {
             layout: '@layout',
             action: '@action',
             show_faces: '@showFaces',
-            share: '@share'
+            share: '@share',
+            // Events
+            edgeCreated: '&onEdgeCreated',
+            edgeRemoved: '&onEdgeRemoved'
         },
         link: function (scope, element, attrs) {
+            function edgeCreatedHandler(url, htmlElement) {
+                if (htmlElement === element[0]) {
+                    // Call the scope event if the htmlElement match
+                    scope.edgeCreated({url: url});
+                }
+            }
+
+            function edgeRemovedHandler(url, htmlElement) {
+                if (htmlElement === element[0]) {
+                    // Call the scope event if the htmlElement match
+                    scope.edgeRemoved({url: url});
+                }
+            }
+
             facebookService.ready.then(function () {
                 FB.XFBML.parse(element[0]);
+                facebookService.Event.subscribe('edge.create', edgeCreatedHandler);
+                facebookService.Event.subscribe('edge.remove', edgeRemovedHandler);
+            });
+
+            // Listen for scope removal and unsubscribe some previously added events.
+            scope.$on('$destroy', function () {
+                facebookService.Event.unsubscribe('edge.create', edgeCreatedHandler);
+                facebookService.Event.unsubscribe('edge.remove', edgeRemovedHandler);
             });
         }
     };
 }
 
-FacebookLikeDirective.$inject = ['facebookService'];
+FacebookLikeDirective.$inject = ['facebookService', '$parse'];
 
 angular.module('angularjs-facebook-sdk.directives')
     .directive('afbLike', FacebookLikeDirective);
@@ -307,6 +358,43 @@ FacebookProfilePicDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
     .directive('afbProfilePic', FacebookProfilePicDirective);
+function FacebookSendDirective(facebookService) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<fb:send ng-attr-href ng-attr-color-schema ng-attr-width ng-attr-height></fb:send>',
+        scope: {
+            href: '@href',
+            colorschema: '@colorschema',
+            width: '@width',
+            height: '@height',
+            // Events
+            messageSend: '@onMessageSend'
+        },
+        link: function (scope, element) {
+            function messageSendHandler(url) {
+                if (url === scope.href) {
+                    // Call the scope event if the htmlElement match
+                    scope.messageSend({ url: url });
+                }
+            }
+
+            facebookService.ready.then(function () {
+                FB.XFBML.parse(element[0]);
+                facebookService.Event.subscribe('message.send', messageSendHandler);
+            });
+
+            scope.$on('$destroy', function () {
+                facebookService.Event.unsubscribe('message.send', messageSendHandler);
+            });
+        }
+    };
+}
+
+FacebookSendDirective.$inject = ['facebookService'];
+
+angular.module('angularjs-facebook-sdk.directives')
+    .directive('afbSend', FacebookSendDirective);
 function FacebookShareDirective(facebookService) {
     return {
         restrict: 'E',

@@ -27,7 +27,6 @@ describe('FacebookService', function () {
     expect(_facebookService.login).toEqual(jasmine.any(Function));
     expect(_facebookService.logout).toEqual(jasmine.any(Function));
     expect(_facebookService.getLoginStatus).toEqual(jasmine.any(Function));
-    expect(_facebookService.getAuthResponse).toEqual(jasmine.any(Function));
   });
 
   it('should return a promise on the api method', function () {
