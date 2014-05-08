@@ -5,6 +5,20 @@
     "angular": "1.2.9",
     "jquery": "~2.1.0"
   },
+  "ignore": [
+    "bower_components",
+    "test",
+    "src",
+    "example",
+    "Gruntfile.js",
+    "karma-unit.conf.js",
+    "LICENSE",
+    "package.json",
+    "README.md",
+    ".gitignore",
+    ".jshintrc",
+    ".editorconfig"
+  ],
   "devDependencies": {
     "angular-mocks": "1.2.9",
     "angular-scenario": "1.2.9"
