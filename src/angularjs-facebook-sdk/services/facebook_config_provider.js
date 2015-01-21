@@ -93,7 +93,7 @@ angular.module('angularjs-facebook-sdk.services')
                 initialization: initDefer.promise,
 
                 /**
-                 * Initialize the Facebook SDK for Javsacript.
+                 * Initialize the Facebook SDK for Javascript.
                  * This will load the SDK using the configuration passed to the provider.
                  *
                  * @return {Promise} The initialize Promise instance.
