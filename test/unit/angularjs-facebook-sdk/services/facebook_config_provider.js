@@ -23,6 +23,7 @@ describe('FacebookConfigProvider', function () {
 
         // configure the provider
         _facebookConfigProvider.setAppId('12345');
+        _facebookConfigProvider.setSdkVersion('v2.2');
         _facebookConfigProvider.setDebug(true);
         _facebookConfigProvider.setLanguage('pt_BR');
 
@@ -32,8 +33,18 @@ describe('FacebookConfigProvider', function () {
         // test an instance of the provider for
         // the custom configuration changes
         expect(instance.appId).toBe('12345');
+        expect(instance.sdkVersion).toBe('v2.2');
         expect(instance.debug).toBe(true);
         expect(instance.lang).toBe('pt_BR');
+      }));
+
+      it('test setting of sdkVersion from user options', inject(function ($injector) {
+        _facebookConfigProvider.setOptions({ version: 'v1.0' });
+
+        // Invoke the provider factory function
+        var instance = $injector.invoke(_facebookConfigProvider.$get);
+
+        expect(instance.sdkVersion).toBe('v1.0');
       }));
 
       it('should initialize the SDK', inject(function ($injector) {
