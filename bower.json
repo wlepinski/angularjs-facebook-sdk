@@ -1,6 +1,6 @@
 {
   "name": "angularjs-facebook-sdk",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "dependencies": {
     "angular": "1.2.9",
     "jquery": "~2.1.0"
