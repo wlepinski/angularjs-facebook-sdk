@@ -1,6 +1,7 @@
 angular.module('angularjs-facebook-sdk.services')
     .provider('facebookConfig', function () {
         var _appId = null;
+        var _sdkVersion = 'v2.2';
         var _userOptions = {};
         var _langCode = 'en_US';
         var _debug = false;
@@ -13,6 +14,15 @@ angular.module('angularjs-facebook-sdk.services')
          */
         this.setAppId = function setAppId(appId) {
             _appId = appId;
+        };
+
+        /**
+         * Set the Facebook SDK version.
+         *
+         * @param {String} sdkVersion The SDK version.
+         */
+        this.setSdkVersion = function setSdkVersion(sdkVersion) {
+            _sdkVersion = sdkVersion;
         };
 
         /**
@@ -59,12 +69,17 @@ angular.module('angularjs-facebook-sdk.services')
         function FacebookProviderFactoryFn($rootScope, $window, $q) {
             var defaultOptions = {
                 appId: _appId,
+                version: _sdkVersion,
                 status: true,
                 xfbml: true
             };
 
             var initDefer = $q.defer();
             var initOpts = angular.extend(defaultOptions, _userOptions);
+
+            if (initOpts.version != _sdkVersion) {
+                _sdkVersion = initOpts.version;
+            }
 
             /**
              * Hook up a method on the window object. This way we can be notified
@@ -85,6 +100,7 @@ angular.module('angularjs-facebook-sdk.services')
             // The public API
             return {
                 appId: _appId,
+                sdkVersion: _sdkVersion,
                 lang: _langCode,
                 debug: _debug,
                 autoInit: _autoInit,
@@ -93,7 +109,7 @@ angular.module('angularjs-facebook-sdk.services')
                 initialization: initDefer.promise,
 
                 /**
-                 * Initialize the Facebook SDK for Javsacript.
+                 * Initialize the Facebook SDK for Javascript.
                  * This will load the SDK using the configuration passed to the provider.
                  *
                  * @return {Promise} The initialize Promise instance.
@@ -106,7 +122,7 @@ angular.module('angularjs-facebook-sdk.services')
                         }
                         js = d.createElement(s);
                         js.id = id;
-                        js.src = "//connect.facebook.net/" + _langCode + (_debug ? "/all/debug.js" : "/all.js");
+                        js.src = "//connect.facebook.net/" + _langCode + (_debug ? "/all/debug.js" : (_sdkVersion.substring(0, 2) == 'v2' ? "/sdk.js" : "/all.js"));
                         fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));
 
