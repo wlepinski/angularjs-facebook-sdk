@@ -1,7 +1,10 @@
 {
   "name": "angularjs-facebook-sdk",
-  "version": "1.0.6",
-  "dependencies": {},
+  "version": "1.0.7",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "angular": "~1.4.4"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
@@ -28,10 +31,14 @@
     "grunt-ngmin": "~0.0.2",
     "karma": "~0.9",
     "karma-jasmine": "~0.0.3",
-    "karma-chrome-launcher": "~0.0.2"
+    "karma-chrome-launcher": "~0.0.2",
+    "angular-mocks": "~1.4.4",
+    "angular-scenario": "~1.4.4"
   },
   "scripts": {
-    "test": "karma start karma-unit.conf.js"
+    "test": "karma start karma-unit.conf.js",
+    "build": "grunt",
+    "start": "grunt serve:examples"
   },
   "engines": {
     "node": ">=0.8.0"

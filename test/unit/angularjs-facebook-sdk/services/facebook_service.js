@@ -5,7 +5,7 @@ describe('FacebookService', function () {
   //excuted before each "it" is run.
   beforeEach(function () {
     // Initialize the service provider by injecting it to a fake module's config block
-    angular.module('testApp', function () {})
+    angular.module('testApp', [])
       .config(function (facebookConfigProvider) {
         facebookConfigProvider.setAppId(12345);
       });
@@ -32,4 +32,4 @@ describe('FacebookService', function () {
   it('should return a promise on the api method', function () {
     expect(_facebookService.api().then).toBeDefined();
   })
-});1
+});

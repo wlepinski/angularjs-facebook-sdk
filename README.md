@@ -9,14 +9,18 @@ Integration between AngularJS and Facebook SDK for Javascript.
 
 ### Compiling from source
 
-You'll need [NodeJS](http://nodejs.org) and [Grunt-CLI](http://gruntjs.com/getting-started#installing-the-cli) installed to compile the source-code.
+You'll need [NodeJS](http://nodejs.org) installed to compile the source-code.
 
-Clone the project and run <code>npm install && grunt</code> on the root folder.
+Clone the project and run <code>npm install && npm run build</code> on the root folder.
 The compiled and minified files will be generated under <code>dist</code> folder
+
+### Running the examples
+
+To see the examples run <code>npm start</code> ( Make sure you define your appId in the file examples/app.js ).
 
 ### Running tests
 
-To execute the unit tests run <code>karma start karma-unit.conf.js</code>. As you may seen, you'll need Karma installed globally on your system. To do it so, run <code>npm install -g karma</code> and you're good to go.
+To execute the unit tests run <code>npm test</code>.
 
 ### Contributing
 
