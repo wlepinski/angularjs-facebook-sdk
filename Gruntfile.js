@@ -67,7 +67,7 @@ module.exports = function (grunt) {
             example: {
                 options: {
                     port: 9001,
-                    base: ['example', 'dist', 'bower_components'],
+                    base: ['example', 'dist', 'node_modules'],
                     keepalive: true,
                     middleware: function (connect, options) {
                         var middlewares = [];

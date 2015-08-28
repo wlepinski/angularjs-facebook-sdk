@@ -4,7 +4,7 @@ describe('FacebookConfigProvider', function () {
 
     beforeEach(function () {
       // Initialize the service provider by injecting it to a fake module's config block
-      angular.module('testApp', function () {})
+      angular.module('testApp', [])
         .config(function (facebookConfigProvider) {
           _facebookConfigProvider = facebookConfigProvider;
         });
