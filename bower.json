@@ -1,6 +1,14 @@
 {
   "name": "angularjs-facebook-sdk",
-  "version": "1.0.7",
+  "version": "1.0.8",
+  "main": "dist/angular-facebook-sdk.js",
+  "moduleType": [
+    "global"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "angular": "~1.4.4"
+  },
   "ignore": [
     "bower_components",
     "test",

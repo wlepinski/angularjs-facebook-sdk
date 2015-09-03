@@ -142,8 +142,9 @@ function FacebookService(facebookConfig, $q, $rootScope) {
 
             this.ready.then(function () {
                 FB.login(function () {
+                    var loginArgs = arguments;
                     $rootScope.$apply(function () {
-                        defer.resolve.apply(this, arguments);
+                        defer.resolve.apply(this, loginArgs);
                     });
                 }, opts);
             });
