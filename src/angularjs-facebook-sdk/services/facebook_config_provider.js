@@ -1,7 +1,7 @@
 angular.module('angularjs-facebook-sdk.services')
     .provider('facebookConfig', function () {
         var _appId = null;
-        var _sdkVersion = 'v2.2';
+        var _sdkVersion = 'v2.9';
         var _userOptions = {};
         var _langCode = 'en_US';
         var _debug = false;

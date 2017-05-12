@@ -1,0 +1,70 @@
+<div class="components" ng-controller="ComponentsController as c">
+    <h1>Documentation: angularjs.facebook.sdk</h1>
+    <component name="afb:send">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:send href="https://github.com/wlepinski/angularjs-facebook-sdk" on-message-send="onMessageSend(url);"></afb:send>
+            </component:declaration>
+        </data>
+    </component>
+
+    <component name="afb:profile:pic">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:profile:pic type="square" width="40" height="40" uid="577763696"></afb:profile:pic>
+            </component:declaration>
+        </data>
+    </component>
+
+    <component name="afb:login">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:login label="Login" scope="email, read_stream, read_friendlists, user_actions.video"></afb:login>
+            </component:declaration>
+        </data>
+    </component>
+
+    <component name="afb:logout">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:logout label="Logout"></afb:logout>
+            </component:declaration>
+        </data>
+    </component>
+
+    <component name="afb:like">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:like href="https://github.com/wlepinski/angularjs-facebook-sdk" layout="button_count" action="like" show-faces="true"
+                    share="false" on-edge-created="onEdgeCreated(url);" on-edge-removed="onEdgeRemoved(url);"></afb:like>
+            </component:declaration>
+        </data>
+    </component>
+
+    <component name="afb:share">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:share:button href="https://github.com/wlepinski/angularjs-facebook-sdk" type="button_count"></afb:share:button>
+            </component:declaration>
+        </data>
+    </component>
+
+    <component name="afb:follow">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:follow href="http://www.facebook.com/zuck" colorscheme="light" layout="standard" show-faces="true"></afb:follow>
+            </component:declaration>
+        </data>
+    </component>
+
+    <component name="afb:comments">
+        <data>
+            <component:declaration ng-non-bindable>
+                <afb:comments href="https://github.com/wlepinski/angularjs-facebook-sdk" numposts="5" colorscheme="light" on-comment-created="onCommentCreated(href, commentID, parentCommentID);"
+                    on-comment-removed="onCommentRemoved(href, commentID, parentCommentID);">
+                </afb:comments>
+            </component:declaration>
+        </data>
+    </component>
+
+</div>

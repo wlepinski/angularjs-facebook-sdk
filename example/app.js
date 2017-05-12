@@ -1,7 +1,11 @@
-angular.module('app', ['angularjs-facebook-sdk'])
-    .config(function facebookConfig(facebookConfigProvider) {
+angular.module('app', ['angularjs-facebook-sdk', 'ngRoute'])
+    .config(function facebookConfig(facebookConfigProvider, $routeProvider) {
         facebookConfigProvider.setAppId(394254447322921);
         facebookConfigProvider.setOptions({ status: false });
+        $routeProvider.when('/', {
+            templateUrl: 'home.html',
+            controller: 'ComponentsController'
+        })
     })
     .run(function (facebookConfig, facebookService) {
         facebookService.ready.then(function () {
@@ -48,17 +52,6 @@ angular.module('app', ['angularjs-facebook-sdk'])
 
         $scope.onMessageSend = function onMessageSend (url) {
             console.log('onMessageSend', arguments);
-        }
-    })
-    .directive('test', function () {
-        return {
-            restrict: 'E',
-            scope: {
-                edgeCreated: '&onEdgeCreated'
-            },
-            link: function (scope, element) {
-                scope.edgeCreated({ url: 'Test' });
-            }
         }
     })
     .directive('component', function ($compile, $sce) {

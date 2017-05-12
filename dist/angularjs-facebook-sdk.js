@@ -26,30 +26,6 @@ angular.module('angularjs-facebook-sdk').run(['facebookConfig',
         }
     }
 ]);
-function FacebookActivityDirective(facebookService) {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<fb:activity ng-attr-app-id ng-attr-site ng-attr-action ng-attr-colorscheme ng-attr-header></fb:activity>',
-        scope: {
-            appId: '@appId',
-            site: '@site',
-            action: '@action',
-            colorschema: '@colorschema',
-            header: '@header'
-        },
-        link: function (scope, element) {
-            facebookService.ready.then(function () {
-                FB.XFBML.parse(element[0]);
-            });
-        }
-    };
-}
-
-FacebookActivityDirective.$inject = ['facebookService'];
-
-angular.module('angularjs-facebook-sdk.directives')
-    .directive('afbActivity', FacebookActivityDirective);
 function FacebookCommentsDirective(facebookService) {
     return {
         restrict: 'E',
@@ -98,33 +74,6 @@ FacebookCommentsDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
     .directive('afbComments', FacebookCommentsDirective);
-function FacebookFacepileDirective(facebookService) {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<fb:facepile ng-attr-href ng-attr-action ng-attr-width ng-attr-max-rows ng-attr-colorscheme ng-attr-size ng-attr-show-count></fb:facepile>',
-        scope: {
-            href: '@href',
-            action: '@action',
-            colorschema: '@colorschema',
-            showCount: '@showCount',
-            height: '@height',
-            width: '@width',
-            maxRows: '@maxRows',
-            size: '@size'
-        },
-        link: function (scope, element) {
-            facebookService.ready.then(function () {
-                FB.XFBML.parse(element[0]);
-            });
-        }
-    };
-}
-
-FacebookFacepileDirective.$inject = ['facebookService'];
-
-angular.module('angularjs-facebook-sdk.directives')
-    .directive('afbFacepile', FacebookFacepileDirective);
 function FacebookFollowDirective(facebookService) {
     return {
         restrict: 'E',
@@ -197,31 +146,6 @@ FacebookLikeDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
     .directive('afbLike', FacebookLikeDirective);
-function FacebookLikeboxDirective(facebookService) {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<fb:like-box ng-attr-href ng-attr-colorscheme ng-attr-show-faces ng-attr-header ng-attr-stream ng-attr-show-border></fb:like-box>',
-        scope: {
-            href: '@href',
-            colorschema: '@colorschema',
-            showFaces: '@showFaces',
-            header: '@header',
-            stream: '@stream',
-            showBorder: '@showBorder'
-        },
-        link: function (scope, element) {
-            facebookService.ready.then(function () {
-                FB.XFBML.parse(element[0]);
-            });
-        }
-    };
-}
-
-FacebookLikeboxDirective.$inject = ['facebookService'];
-
-angular.module('angularjs-facebook-sdk.directives')
-    .directive('afbLikeBox', FacebookLikeboxDirective);
 function FacebookLoginDirective(facebookService) {
     return {
         restrict: 'E',
@@ -279,47 +203,6 @@ FacebookLogoutDirective.$inject = ['facebookService'];
 
 angular.module('angularjs-facebook-sdk.directives')
     .directive('afbLogout', FacebookLogoutDirective);
-function FacebookNameDirective(facebookService) {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<fb:name ng-attr-uid></fb:name>',
-        scope: {
-            uid: '@uid'
-        },
-        link: function (scope, element) {
-            facebookService.ready.then(function () {
-                FB.XFBML.parse(element[0]);
-            });
-        }
-    };
-}
-
-FacebookNameDirective.$inject = ['facebookService'];
-
-angular.module('angularjs-facebook-sdk.directives')
-    .directive('afbName', FacebookNameDirective);
-function FacebookPostDirective(facebookService) {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<fb:post ng-attr-href ng-attr-width></fb:post>',
-        scope: {
-            href: '@href',
-            width: '@width'
-        },
-        link: function (scope, element) {
-            facebookService.ready.then(function () {
-                FB.XFBML.parse(element[0]);
-            });
-        }
-    };
-}
-
-FacebookPostDirective.$inject = ['facebookService'];
-
-angular.module('angularjs-facebook-sdk.directives')
-    .directive('afbPost', FacebookPostDirective);
 function FacebookProfilePicDirective(facebookService) {
     return {
         restrict: 'E',
@@ -419,7 +302,7 @@ angular.module('angularjs-facebook-sdk.directives')
 angular.module('angularjs-facebook-sdk.services')
     .provider('facebookConfig', function () {
         var _appId = null;
-        var _sdkVersion = 'v2.2';
+        var _sdkVersion = 'v2.9';
         var _userOptions = {};
         var _langCode = 'en_US';
         var _debug = false;
